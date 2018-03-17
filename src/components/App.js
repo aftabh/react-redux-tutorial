@@ -1,9 +1,11 @@
 import React from "react";
 import { hot } from 'react-hot-loader';
 
+import './App.scss';
+
 const App = () => {
   return (
-    <div>
+    <div className='main'>
       <p>React here!</p>
     </div>
   );
