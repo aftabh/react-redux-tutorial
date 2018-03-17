@@ -1,0 +1,25 @@
+{
+  "name": "frontend-dev",
+  "version": "0.0.1",
+  "description": "A bare webpack + React + Redux based project.",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "dev": "webpack --mode development",
+    "start": "webpack-dev-server --mode development --open"
+  },
+  "keywords": [
+    "Webpack",
+    "React",
+    "Redux"
+  ],
+  "author": "Aftab Hussain",
+  "license": "MIT",
+  "devDependencies": {
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.0.6",
+    "webpack": "^4.1.1",
+    "webpack-cli": "^2.0.12",
+    "webpack-dev-server": "^3.1.1"
+  }
+}

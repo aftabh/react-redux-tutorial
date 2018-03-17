@@ -1,0 +1,6 @@
+/dist
+/node_modules
+
+# To keep the commit history clean (for training purpose only)
+package-lock.json
+yarn.lock
