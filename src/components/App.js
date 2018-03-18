@@ -1,12 +1,18 @@
 import React from "react";
 import { hot } from 'react-hot-loader';
 
+import Header from "./Header";
+import Content from "./Content";
+import Footer from "./Footer";
+
 import './App.scss';
 
 const App = () => {
   return (
     <div className='main'>
-      <p>React here!</p>
+      <Header />
+      <Content />
+      <Footer />
     </div>
   );
 };
