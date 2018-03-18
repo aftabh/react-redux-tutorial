@@ -1,55 +1,25 @@
 import React from "react";
 import ContentView from './component';
 
-import { createStore } from 'redux';
-import reducers from './reducers';
+import { connect } from 'react-redux';
 
+// map redux store's state to component's props
+const mapStateToProps = (state) => ({
+    value: state.value
+});
 
-const store = createStore(reducers);
+// map dispatch to props
+const mapDispatchToProps = (dispatch) => ({
+    onIncrement: () => dispatch( /* action */ {
+        type: 'INCREMENT'
+    }),
 
+    onDecrement: () => dispatch( /* action */ {
+        type: 'DECREMENT'
+    }),
+});
 
-class ContentContainer extends React.Component {
-
-    constructor(props) {
-        super(props);
-
-        const initialState = store.getState();
-
-        this.state = initialState;
-        this.dispatch = store.dispatch;
-
-        // subscribe to store changes
-        store.subscribe(() => this.onStoreChange());
-    }
-
-    onStoreChange() {
-        const newState = store.getState();
-
-        this.setState(newState);
-    }
-
-    onIncrement() {
-        this.dispatch( /* action */ {
-            type: 'INCREMENT'
-        });
-    }
-
-    onDecrement() {
-        this.dispatch( /* action */ {
-        	type: 'DECREMENT' 
-        });
-    }
-
-    render() {
-        const value = this.state.value;
-
-        return (
-            <ContentView
-                value={value}
-                onIncrement={() => this.onIncrement()}
-                onDecrement={() => this.onDecrement()} />
-        );
-    }
-}
+// connect mapStateToProps and mapDispatchToProps maps to ContentView
+const ContentContainer = connect(mapStateToProps, mapDispatchToProps)(ContentView);
 
 export default ContentContainer;
