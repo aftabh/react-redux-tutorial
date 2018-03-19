@@ -1,27 +1,11 @@
 import React from "react";
 import ContentView from './component';
 
+import { createStore } from 'redux';
+import reducers from './reducers';
 
-const initialState = {
-    value: 0,
-};
 
-const reducer = (state = initialState, action) => {
-    switch (action.type) {
-        case 'INCREMENT':
-            return {
-                value: state.value + 1
-            };
-
-        case 'DECREMENT':
-            return {
-                value: state.value - 1
-            };
-
-        default:
-            return state;
-    }
-};
+const store = createStore(reducers);
 
 
 class ContentContainer extends React.Component {
@@ -29,13 +13,19 @@ class ContentContainer extends React.Component {
     constructor(props) {
         super(props);
 
-        const initialState = reducer(undefined, {});
+        const initialState = store.getState();
 
         this.state = initialState;
+        this.dispatch = store.dispatch;
+
+        // subscribe to store changes
+        store.subscribe(() => this.onStoreChange());
     }
 
-    dispatch(action) {
-        this.setState(prevState => reducer(prevState, action));
+    onStoreChange() {
+        const newState = store.getState();
+
+        this.setState(newState);
     }
 
     onIncrement() {
