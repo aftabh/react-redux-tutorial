@@ -6,7 +6,7 @@ import './style.scss';
 
 class ComponentView extends React.Component {
     render() {
-        const {value, onIncrement, onDecrement} = this.props;
+        const {value, onIncrement, onDecrement, onMultiplyWith, onResetCounter} = this.props;
 
         return (
             <div className='content'>
@@ -19,6 +19,14 @@ class ComponentView extends React.Component {
                 <button onClick={onDecrement}>
                     decrement
                 </button>
+
+                <button onClick={() => onMultiplyWith(2)}>
+                    multiply with 2
+                </button>
+
+                <button onClick={onResetCounter}>
+                    reset counter
+                </button>
             </div>
         );
     }
@@ -26,8 +34,10 @@ class ComponentView extends React.Component {
 
 ComponentView.propTypes = {
   value:       PropTypes.number.isRequired,
+  onResetCounter: PropTypes.func.isRequired,
   onIncrement: PropTypes.func.isRequired,
   onDecrement: PropTypes.func.isRequired,
+  onMultiplyWith: PropTypes.func.isRequired,
 };
 
 export default ComponentView;
